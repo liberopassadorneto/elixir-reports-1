@@ -9,7 +9,7 @@ defmodule GenReport do
     file_name
     |> Parser.parse_file()
     |> process_file()
-    |> reformat_data()
+    |> format_report()
   end
 
   defp report_acc() do
@@ -51,7 +51,7 @@ defmodule GenReport do
     Map.put(acc, name, updated_person_entry)
   end
 
-  def reformat_data(data) do
+  def format_report(data) do
     Enum.reduce(data, initial_state(), fn {name, person_data}, acc ->
       update_state(acc, name, person_data)
     end)
